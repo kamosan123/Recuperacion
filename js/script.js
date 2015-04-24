@@ -22,7 +22,7 @@ window.onload=function(){
 	});
 	var adivinarNumero=function(){
 		var estados="";
-		var numero=Number(adivinar.value);
+		var numero=Number(nom_div("numero").value);
 		if(numero!==0){
 
 		
