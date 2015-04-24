@@ -22,10 +22,10 @@ window.onload=function(){
 	});
 	var adivinarNumero=function(){
 		var estados="";
-		var adivinar=nom_div("numero");
-		if(adivinar!==0){
+		var numero=Number(adivinar.value);
+		if(numero!==0){
 
-			var numero=Number(adivinar.value);
+		
 			if(numero>=1&&numero<=rango){
 
 				var pista="";
