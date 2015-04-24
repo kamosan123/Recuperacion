@@ -1,6 +1,6 @@
 window.onload=function(){
 
-	var rango=0, intentosMaximos=20, numeroIntentos=0, encontrarNumero=0;
+	var rango=0, intentosMaximos=20, numeroIntentos=0, encontrarNumero=0,pista="";;
 
 	var inicio= function(){
 	
@@ -14,21 +14,23 @@ window.onload=function(){
 		console.log("wl numero es: "+encontrarNumero);
 
 		};
-	inicio();
-	nom_div("inicio").addEventListener("click",function(event){
-
-		inicio()
+		inicio();
+		nom_div("inicio").addEventListener("click",function(event){
+ 			numeroIntentos=0;
+			inicio();
+		
 
 	});
 	var adivinarNumero=function(){
 		var estados="";
 		var numero=Number(nom_div("numero").value);
+
 		if(numero!==0){
 
-		
+			
 			if(numero>=1&&numero<=rango){
 
-				var pista="";
+				
 
 				if(numeroIntentos<intentosMaximos){
 					numeroIntentos++;
@@ -79,27 +81,22 @@ window.onload=function(){
 				else{
 				alert(pista="Mala suerte el numero era: "+numero);
 				numeroIntentos=0;
+				inicio();
 				}
-				nom_div("pista").innerHTML=pista;
 			}
 			else
 				{
 				nom_div("pista").innerHTML="El número debe estar entre 1 y "+rango;
-				adivinar.focus()
-
-			}
+				}
 		}
-		else
-			{
-			nom_div("pista").innerHTML="Por favor escribe un número";
-			adivinar.focus()
-		}
+		
 	};
 	nom_div("form").addEventListener("submit",function(event)
 		{
-		adivinarNumero();
 		event.preventDefault();
-		return false
+		adivinarNumero();
+		numero.focus();
+		
 	}
 	);
 	function nom_div(div){
@@ -107,6 +104,8 @@ window.onload=function(){
 	}
 	
 }
+
+
 
 
 
