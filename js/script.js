@@ -1,6 +1,6 @@
 window.onload=function(){
 
-	var rango=0, intentosMaximos=20, numeroIntentos=0, encontrarNumero=0,pista="";;
+	var rango=0, intentosMaximos=20, numeroIntentos=0, encontrarNumero=0,pista="";
 
 	var inicio= function(){
 	
@@ -14,31 +14,30 @@ window.onload=function(){
 		console.log("wl numero es: "+encontrarNumero);
 
 		};
-		inicio();
-		nom_div("inicio").addEventListener("click",function(event){
- 			numeroIntentos=0;
-			inicio();
-		
+	inicio();
+	nom_div("inicio").addEventListener("click",function(event){
+
+		inicio()
 
 	});
 	var adivinarNumero=function(){
 		var estados="";
 		var numero=Number(nom_div("numero").value);
-
 		if(numero!==0){
 
 			
 			if(numero>=1&&numero<=rango){
 
 				
-
 				if(numeroIntentos<intentosMaximos){
 					numeroIntentos++;
 					nom_div("intentos").innerHTML="INTENTO "+numeroIntentos+" DE "+intentosMaximos;
 
 					if(numero===encontrarNumero){
 
-						pista="FELICITACIONES EL NUMERO ES: "+numero
+						var resultado="FELICITACIONES EL NUMERO ES: "+numero;
+						nom_div("pista").innerHTML=resultado;
+
 					}
 					else{
 
@@ -48,13 +47,16 @@ window.onload=function(){
 
 							if(probabilidad<50){
 								estados="Frio, Frio";
+								nom_div("pista").innerHTML=estados;
 							}
 							else{
 								if(probabilidad<90){
 									estados="Tibio, ya casi";
+									nom_div("pista").innerHTML=estados;
 								}
 								else{
 									estados="Te estas quemando :D";
+									nom_div("pista").innerHTML=estados;
 								}
 							}
 						}
@@ -63,31 +65,38 @@ window.onload=function(){
 								probabilidad=probabilidad-100;
 								if(probabilidad<10){
 								estados="Te estas quemando :D";
+								nom_div("pista").innerHTML=estados;
 								}	
 								else{
 									if(probabilidad<60){
 									estados="Tibio, ya casi";
+									nom_div("pista").innerHTML=estados;
 									}
-								else{
-									estados="Frio, Frio";
-									}
-							}
+									else{
+								estados="Frio, Frio";
+								nom_div("pista").innerHTML=estados;
+										}
+								}		
 
+							}	
 						}
-						}
-						pista=estados;
+						
 					}
 				}
 				else{
-				alert(pista="Mala suerte el numero era: "+numero);
+				alert("Mala suerte el numero era: "+numero);
 				numeroIntentos=0;
 				inicio();
 				}
+				
 			}
 			else
 				{
-				nom_div("pista").innerHTML="El número debe estar entre 1 y "+rango;
-				}
+				pista="El número debe estar entre 1 y "+rango;
+				nom_div("pista").innerHTML=pista;
+				numero.focus();
+
+			}
 		}
 		
 	};
@@ -97,16 +106,13 @@ window.onload=function(){
 		adivinarNumero();
 		numero.focus();
 		
+		
 	}
 	);
 	function nom_div(div){
-		return document.getElementById(div)
+		return document.getElementById(div);
 	}
 	
 }
-
-
-
-
 
 
